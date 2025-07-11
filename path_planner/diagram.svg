@@ -1,0 +1,729 @@
+<svg version="1.1" baseProfile="full" width="1257.5" height="1723.0" viewBox="0 0 1257.5 1723" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<desc >[Pointwise Cost Functional|
+		Ctotal = Csmooth + Cobs + Cguidance
+	    Evaluates the Path Lattice
+	]
+	
+	#.added: dashed
+	[&lt;added&gt;Reference Line |
+		Cartesian space (x, y, theta, k, dk)
+	    mapped to
+	    Frenet frame (s, l, dl, ddl, dddl)
+	] --&gt; [SL Map&amp;Obs. Info.]
+	[&lt;added&gt;Last Cycle Trajectory|
+		Helps to map the obstacles on the reference line,
+	    this trajectory is used as a time estimation
+	] --&gt; [SL Map&amp;Obs. Info.]
+	
+	[Traffic Regulations] -&gt; [Pointwise Cost Functional]
+	[SL Map&amp;Obs. Info.] -&gt; [Pointwise Cost Functional]
+	[Vehicle Dynamic] -&gt; [Pointwise Cost Functional]
+	
+	[Lattice Sampling Strategy|
+		The strategy can differ for other scenarios;
+	    e.g., for lane change a longer sampling interval is required
+	] -&gt; [Path Lattice]
+	
+	[Pointwise Cost Functional] -&gt; [Dynamic Programming Search]
+	[Path Lattice] -&gt; [Dynamic Programming Search]
+	
+	[Dynamic Programming Search] -&gt; [DP Result]
+	
+	[DP Result] -- [DP Path]
+	[DP Result] -- [Feasible Tunnel|
+		This one is created on the SL graph,
+	    it defines limits for L for each S.
+	]
+	[DP Result] -- [Nudge Decisions|
+		This seems like &quot;no result&quot;, it is just
+	    a by-product of the plan.
+	]
+	
+	[Cost Functional|
+		Cs = Csmooth + Cguidance
+	]
+	
+	[Smooth Functional] -&gt; [Cost Functional]
+	[DP Path] -&gt; [Cost Functional]
+	
+	[Linearized Constraint|
+		(Eqs. on page 8)
+	    This adds a check that the car has a valid heading
+	    at every point of the path.
+	]
+	
+	[Feasible Tunnel] -&gt; [Linearized Constraint]
+	[Vehicle Dynamics] -&gt; [Linearized Constraint]
+	
+	[Spline QP Solver|
+		s.t. boundary constraints
+	    .... dynamic feasibility
+	]
+	
+	[Cost Functional] -&gt; [Spline QP Solver]
+	[Linearized Constraint] -&gt; [Spline QP Solver]
+	
+	[Spline QP Solver] -&gt; [Smooth Path]
+	
+	[Cost Functional.|
+		Ctotal = Cvkeep + Csmooth + Cobs
+	]
+	
+	[Traffic Regulations.] -&gt; [Cost Functional.]
+	[SL Map&amp;Obs. Info..] -&gt; [Cost Functional.]
+	[Vehicle Dynamic.] -&gt; [Cost Functional.]
+	
+	[Cost Functional.] -&gt; [Dynamic Programming Search.]
+	[Discretized ST Grid|
+		Using piecewise linear speed profile function
+	    to evaluate the ST grid
+	] -&gt; [Dynamic Programming Search.]
+	
+	[Smooth Path] (probably this is related)-- [Discretized ST Grid]
+	
+	[Dynamic Programming Search.] -&gt; [DP Speed.]
+	[Dynamic Programming Search.] -&gt; [Feasible Tunnel.]
+	[Dynamic Programming Search.] -&gt; [Speed Decisions.]
+	
+	[Cost Functional:|
+		Ctotal = Cguidance + Csmooth
+	]
+	
+	[Smooth Functional.] -&gt; [Cost Functional:]
+	[DP Speed.] -&gt; [Cost Functional:]
+	
+	[Feasible Tunnel.] -&gt; [Linearized Constraint.]
+	[Vehicle Dynamics.] -&gt; [Linearized Constraint.]
+	[Traffic Regulations:] -&gt; [Linearized Constraint.]
+	
+	[Spline QP Solver.|
+		s.t. boundary constraints
+	    .... dynamic constraints
+	    .... monotony
+	    etc.
+	]
+	
+	[Cost Functional:] -&gt; [Spline QP Solver.]
+	[Linearized Constraint.] -&gt; [Spline QP Solver.]
+	
+	[Spline QP Solver.] -&gt; [Smooth Speed]
+	
+	
+	[Smooth Speed] (+ Smooth Path)-&gt; [Candidate Trajectory]
+	
+	[Candidate Trajectory] -&gt; [Vehicle Control]
+	
+	
+	
+	
+	</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+		<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="transparent">
+				<rect x="0.0" y="0.0" height="1723.0" width="1257.5" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<g stroke-dasharray="6 6">
+						<path d="M182.0 97.0 L182 117 L303.84464313776357 158.83507060524073 L303.8 158.8 " fill="none"></path>
+					</g>
+					<path d="M295.8 161.7 L303.8 158.8 L299.3 151.6 L310.1 161.0 Z"></path>
+					<g stroke-dasharray="6 6">
+						<path d="M531.5 88.5 L531.5 117 L409.65535686223643 158.83507060524073 L409.7 158.8 " fill="none"></path>
+					</g>
+					<path d="M414.2 151.6 L409.7 158.8 L417.7 161.7 L403.4 161.0 Z"></path>
+					<path d="M157.8 193.0 L157.75 237 L217.70047923249112 255.0755213766305 L217.7 255.1 " fill="none"></path>
+					<path d="M209.8 258.3 L217.7 255.1 L212.9 248.0 L224.1 257.0 Z"></path>
+					<path d="M356.8 193.0 L356.75 237 L356.75 250.33333333333334 L356.8 250.3 " fill="none"></path>
+					<path d="M351.4 243.7 L356.8 250.3 L362.1 243.7 L356.8 257.0 Z"></path>
+					<path d="M546.8 193.0 L546.75 237 L489.7738844342276 254.99245754708602 L489.8 255.0 " fill="none"></path>
+					<path d="M494.5 247.9 L489.8 255.0 L497.7 258.1 L483.4 257.0 Z"></path>
+					<path d="M871.3 217.0 L871.25 237 L871.25 274.3333333333333 L871.3 274.3 " fill="none"></path>
+					<path d="M865.9 267.7 L871.3 274.3 L876.6 267.7 L871.3 281.0 Z"></path>
+					<path d="M356.8 337.0 L356.75 357 L493.0643355057862 376.0760586130546 L493.1 376.1 " fill="none"></path>
+					<path d="M485.7 380.4 L493.1 376.1 L487.2 369.9 L499.7 377.0 Z"></path>
+					<path d="M871.3 313.0 L871.25 357 L734.9356644942139 376.0760586130546 L734.9 376.1 " fill="none"></path>
+					<path d="M740.8 369.9 L734.9 376.1 L742.3 380.4 L728.3 377.0 Z"></path>
+					<path d="M614.0 409.0 L614 429 L614 442.3333333333333 L614.0 442.3 " fill="none"></path>
+					<path d="M608.7 435.7 L614.0 442.3 L619.3 435.7 L614.0 449.0 Z"></path>
+					<g stroke-dasharray="6 6">
+						<path d="M568.0 471.4 L354 501 L354 545 L354.0 545.0 " fill="none"></path>
+					</g>
+					<g stroke-dasharray="6 6">
+						<path d="M660.0 471.4 L874 501 L874 521 L874.0 521.0 " fill="none"></path>
+					</g>
+					<g stroke-dasharray="6 6">
+						<path d="M592.2 481.0 L565 501 L565 521 L565.0 521.0 " fill="none"></path>
+					</g>
+					<path d="M195.5 577.0 L195.5 621 L232.68440467536098 653.1404633471575 L232.7 653.1 " fill="none"></path>
+					<path d="M224.2 652.8 L232.7 653.1 L231.1 644.7 L237.7 657.5 Z"></path>
+					<path d="M354.0 577.0 L354 621 L316.81559532463905 653.1404633471575 L316.8 653.1 " fill="none"></path>
+					<path d="M318.4 644.7 L316.8 653.1 L325.3 652.8 L311.8 657.5 Z"></path>
+					<path d="M874.0 601.0 L874 621 L904.9312484651235 637.8157977766743 L904.9 637.8 " fill="none"></path>
+					<path d="M896.5 639.3 L904.9 637.8 L901.6 629.9 L910.8 641.0 Z"></path>
+					<path d="M1126.0 577.0 L1126 621 L1095.0687515348766 637.8157977766743 L1095.1 637.8 " fill="none"></path>
+					<path d="M1098.4 629.9 L1095.1 637.8 L1103.5 639.3 L1089.2 641.0 Z"></path>
+					<path d="M274.8 721.5 L274.75 758 L632.8893907421539 804.739235333397 L632.9 804.7 " fill="none"></path>
+					<path d="M625.6 809.2 L632.9 804.7 L627.0 798.6 L639.5 805.6 Z"></path>
+					<path d="M1000.0 738.0 L1000 758 L836.0026852938968 795.061540046577 L836.0 795.1 " fill="none"></path>
+					<path d="M841.3 788.4 L836.0 795.1 L843.7 798.8 L829.5 796.5 Z"></path>
+					<path d="M734.5 858.0 L734.5 878 L734.5 891.3333333333334 L734.5 891.3 " fill="none"></path>
+					<path d="M729.2 884.7 L734.5 891.3 L739.8 884.7 L734.5 898.0 Z"></path>
+					<path d="M82.0 930.0 L82 950 L168.3678152614219 976.0733027204293 L168.4 976.1 " fill="none"></path>
+					<path d="M160.4 979.3 L168.4 976.1 L163.5 969.0 L174.8 978.0 Z"></path>
+					<path d="M285.0 930.0 L285 950 L283.48770867350487 971.3499951975778 L283.5 971.3 " fill="none"></path>
+					<path d="M278.6 964.3 L283.5 971.3 L289.3 965.1 L283.0 978.0 Z"></path>
+					<path d="M479.5 930.0 L479.5 950 L393.1321847385781 976.0733027204293 L393.1 976.1 " fill="none"></path>
+					<path d="M398.0 969.0 L393.1 976.1 L401.1 979.3 L386.8 978.0 Z"></path>
+					<path d="M280.8 1042.0 L280.75 1070 L368.53393564735063 1088.6169171328697 L368.5 1088.6 " fill="none"></path>
+					<path d="M360.9 1092.5 L368.5 1088.6 L363.1 1082.0 L375.1 1090.0 Z"></path>
+					<path d="M734.5 1050.0 L734.5 1070 L583.3359650351384 1089.1616382349825 L583.3 1089.2 " fill="none"></path>
+					<path d="M589.3 1083.0 L583.3 1089.2 L590.6 1093.6 L576.7 1090.0 Z"></path>
+					<text x="742.5" y="950.0" stroke="none">(probably this is related)</text>
+					<g stroke-dasharray="6 6">
+						<path d="M734.5 930.0 L734.5 950 L734.5 970 L734.5 970.0 " fill="none"></path>
+					</g>
+					<path d="M385.8 1122.0 L305 1142 L305 1155.3333333333333 L305.0 1155.3 " fill="none"></path>
+					<path d="M299.7 1148.7 L305.0 1155.3 L310.3 1148.7 L305.0 1162.0 Z"></path>
+					<path d="M539.8 1122.0 L651.5 1142 L651.5 1155.3333333333333 L651.5 1155.3 " fill="none"></path>
+					<path d="M646.2 1148.7 L651.5 1155.3 L656.8 1148.7 L651.5 1162.0 Z"></path>
+					<path d="M457.8 1122.0 L467 1142 L467 1155.3333333333333 L467.0 1155.3 " fill="none"></path>
+					<path d="M461.7 1148.7 L467.0 1155.3 L472.3 1148.7 L467.0 1162.0 Z"></path>
+					<path d="M135.0 1194.0 L135 1214 L162.0054165999608 1230.5209607435054 L162.0 1230.5 " fill="none"></path>
+					<path d="M153.5 1231.6 L162.0 1230.5 L159.1 1222.5 L167.7 1234.0 Z"></path>
+					<path d="M305.0 1194.0 L305 1214 L277.9945834000392 1230.5209607435054 L278.0 1230.5 " fill="none"></path>
+					<path d="M280.9 1222.5 L278.0 1230.5 L286.5 1231.6 L272.3 1234.0 Z"></path>
+					<path d="M651.5 1194.0 L651.5 1214 L775.2284386854849 1248.2227596364107 L775.2 1248.2 " fill="none"></path>
+					<path d="M767.4 1251.6 L775.2 1248.2 L770.2 1241.3 L781.7 1250.0 Z"></path>
+					<path d="M839.5 1194.0 L839.5 1214 L839.5 1243.3333333333333 L839.5 1243.3 " fill="none"></path>
+					<path d="M834.2 1236.7 L839.5 1243.3 L844.8 1236.7 L839.5 1250.0 Z"></path>
+					<path d="M1040.0 1194.0 L1040 1214 L907.6454755297585 1248.32636046111 L907.6 1248.3 " fill="none"></path>
+					<path d="M912.8 1241.5 L907.6 1248.3 L915.4 1251.8 L901.2 1250.0 Z"></path>
+					<path d="M220.0 1298.0 L220 1318 L385.8407461218568 1365.4717196569582 L385.8 1365.5 " fill="none"></path>
+					<path d="M378.0 1368.8 L385.8 1365.5 L380.9 1358.5 L392.3 1367.3 Z"></path>
+					<path d="M839.5 1282.0 L839.5 1318 L588.7648010655976 1372.4534924584293 L588.8 1372.5 " fill="none"></path>
+					<path d="M594.1 1365.8 L588.8 1372.5 L596.4 1376.3 L582.3 1373.9 Z"></path>
+					<path d="M487.3 1451.0 L487.25 1471 L487.25 1484.3333333333333 L487.3 1484.3 " fill="none"></path>
+					<path d="M481.9 1477.7 L487.3 1484.3 L492.6 1477.7 L487.3 1491.0 Z"></path>
+					<text x="495.3" y="1543.0" stroke="none">(+ Smooth Path)</text>
+					<path d="M487.3 1523.0 L487.25 1543 L487.25 1556.3333333333333 L487.3 1556.3 " fill="none"></path>
+					<path d="M481.9 1549.7 L487.3 1556.3 L492.6 1549.7 L487.3 1563.0 Z"></path>
+					<path d="M487.3 1595.0 L487.25 1615 L487.25 1628.3333333333333 L487.3 1628.3 " fill="none"></path>
+					<path d="M481.9 1621.7 L487.3 1628.3 L492.6 1621.7 L487.3 1635.0 Z"></path>
+					<g data-name="Pointwise Cost Functional">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Pointwise Cost Functional">
+							<rect x="211.8" y="257.0" height="80.0" width="290.0" data-name="Pointwise Cost Functional"></rect>
+							<path d="M211.8 289.0 L501.8 289.0" fill="none" data-name="Pointwise Cost Functional"></path>
+						</g>
+						<g transform="translate(211.75, 257)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Pointwise Cost Functional" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Pointwise Cost Functional" data-compartment="0">
+								<text x="137.0" y="14.1" stroke="none" text-anchor="middle" data-name="Pointwise Cost Functional" data-compartment="0">Pointwise Cost Functional</text>
+								
+							</g>
+						</g>
+						<g transform="translate(211.75, 289)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Pointwise Cost Functional" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Pointwise Cost Functional" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Pointwise Cost Functional" data-compartment="1">Ctotal = Csmooth + Cobs + Cguidance</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Pointwise Cost Functional" data-compartment="1">Evaluates the Path Lattice</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Reference Line">
+						<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6" data-name="Reference Line">
+							<rect x="53.5" y="0.0" height="97.0" width="257.0" data-name="Reference Line"></rect>
+							<path d="M53.5 32.0 L310.5 32.0" fill="none" data-name="Reference Line"></path>
+						</g>
+						<g transform="translate(53.5, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Reference Line" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Reference Line" data-compartment="0">
+								<text x="120.5" y="14.1" stroke="none" text-anchor="middle" data-name="Reference Line" data-compartment="0">Reference Line</text>
+								
+							</g>
+						</g>
+						<g transform="translate(53.5, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Reference Line" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Reference Line" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Reference Line" data-compartment="1">Cartesian space (x, y, theta, k, dk)</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Reference Line" data-compartment="1">mapped to</text>
+								<text x="0.0" y="46.5" stroke="none" data-name="Reference Line" data-compartment="1">Frenet frame (s, l, dl, ddl, dddl)</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="SL Map&amp;Obs. Info.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="SL Map&amp;Obs. Info.">
+							<rect x="277.8" y="161.0" height="32.0" width="158.0" data-name="SL Map&amp;Obs. Info."></rect>
+						</g>
+						<g transform="translate(277.75, 161)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SL Map&amp;Obs. Info." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SL Map&amp;Obs. Info." data-compartment="0">
+								<text x="71.0" y="14.1" stroke="none" text-anchor="middle" data-name="SL Map&amp;Obs. Info." data-compartment="0">SL Map&amp;Obs. Info.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Last Cycle Trajectory">
+						<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6" data-name="Last Cycle Trajectory">
+							<rect x="350.5" y="8.5" height="80.0" width="362.0" data-name="Last Cycle Trajectory"></rect>
+							<path d="M350.5 40.5 L712.5 40.5" fill="none" data-name="Last Cycle Trajectory"></path>
+						</g>
+						<g transform="translate(350.5, 8.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Last Cycle Trajectory" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Last Cycle Trajectory" data-compartment="0">
+								<text x="173.0" y="14.1" stroke="none" text-anchor="middle" data-name="Last Cycle Trajectory" data-compartment="0">Last Cycle Trajectory</text>
+								
+							</g>
+						</g>
+						<g transform="translate(350.5, 40.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Last Cycle Trajectory" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Last Cycle Trajectory" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Last Cycle Trajectory" data-compartment="1">Helps to map the obstacles on the reference line,</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Last Cycle Trajectory" data-compartment="1">this trajectory is used as a time estimation</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Traffic Regulations">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Traffic Regulations">
+							<rect x="77.8" y="161.0" height="32.0" width="160.0" data-name="Traffic Regulations"></rect>
+						</g>
+						<g transform="translate(77.75, 161)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Traffic Regulations" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Traffic Regulations" data-compartment="0">
+								<text x="72.0" y="14.1" stroke="none" text-anchor="middle" data-name="Traffic Regulations" data-compartment="0">Traffic Regulations</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Vehicle Dynamic">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Vehicle Dynamic">
+							<rect x="475.8" y="161.0" height="32.0" width="142.0" data-name="Vehicle Dynamic"></rect>
+						</g>
+						<g transform="translate(475.75, 161)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Vehicle Dynamic" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Vehicle Dynamic" data-compartment="0">
+								<text x="63.0" y="14.1" stroke="none" text-anchor="middle" data-name="Vehicle Dynamic" data-compartment="0">Vehicle Dynamic</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Lattice Sampling Strategy">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Lattice Sampling Strategy">
+							<rect x="657.8" y="137.0" height="80.0" width="427.0" data-name="Lattice Sampling Strategy"></rect>
+							<path d="M657.8 169.0 L1084.8 169.0" fill="none" data-name="Lattice Sampling Strategy"></path>
+						</g>
+						<g transform="translate(657.75, 137)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Lattice Sampling Strategy" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Lattice Sampling Strategy" data-compartment="0">
+								<text x="205.5" y="14.1" stroke="none" text-anchor="middle" data-name="Lattice Sampling Strategy" data-compartment="0">Lattice Sampling Strategy</text>
+								
+							</g>
+						</g>
+						<g transform="translate(657.75, 169)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Lattice Sampling Strategy" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Lattice Sampling Strategy" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Lattice Sampling Strategy" data-compartment="1">The strategy can differ for other scenarios</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Lattice Sampling Strategy" data-compartment="1">e.g., for lane change a longer sampling interval is required</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Path Lattice">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Path Lattice">
+							<rect x="817.8" y="281.0" height="32.0" width="107.0" data-name="Path Lattice"></rect>
+						</g>
+						<g transform="translate(817.75, 281)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Path Lattice" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Path Lattice" data-compartment="0">
+								<text x="45.5" y="14.1" stroke="none" text-anchor="middle" data-name="Path Lattice" data-compartment="0">Path Lattice</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Dynamic Programming Search">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Dynamic Programming Search">
+							<rect x="489.5" y="377.0" height="32.0" width="249.0" data-name="Dynamic Programming Search"></rect>
+						</g>
+						<g transform="translate(489.5, 377)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Dynamic Programming Search" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Dynamic Programming Search" data-compartment="0">
+								<text x="116.5" y="14.1" stroke="none" text-anchor="middle" data-name="Dynamic Programming Search" data-compartment="0">Dynamic Programming Search</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="DP Result">
+						<g fill="#eee8d5" stroke="#33322E" data-name="DP Result">
+							<rect x="568.0" y="449.0" height="32.0" width="92.0" data-name="DP Result"></rect>
+						</g>
+						<g transform="translate(568, 449)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DP Result" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DP Result" data-compartment="0">
+								<text x="38.0" y="14.1" stroke="none" text-anchor="middle" data-name="DP Result" data-compartment="0">DP Result</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="DP Path">
+						<g fill="#eee8d5" stroke="#33322E" data-name="DP Path">
+							<rect x="315.5" y="545.0" height="32.0" width="77.0" data-name="DP Path"></rect>
+						</g>
+						<g transform="translate(315.5, 545)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DP Path" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DP Path" data-compartment="0">
+								<text x="30.5" y="14.1" stroke="none" text-anchor="middle" data-name="DP Path" data-compartment="0">DP Path</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Feasible Tunnel">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Feasible Tunnel">
+							<rect x="737.5" y="521.0" height="80.0" width="273.0" data-name="Feasible Tunnel"></rect>
+							<path d="M737.5 553.0 L1010.5 553.0" fill="none" data-name="Feasible Tunnel"></path>
+						</g>
+						<g transform="translate(737.5, 521)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Feasible Tunnel" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Feasible Tunnel" data-compartment="0">
+								<text x="128.5" y="14.1" stroke="none" text-anchor="middle" data-name="Feasible Tunnel" data-compartment="0">Feasible Tunnel</text>
+								
+							</g>
+						</g>
+						<g transform="translate(737.5, 553)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Feasible Tunnel" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Feasible Tunnel" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Feasible Tunnel" data-compartment="1">This one is created on the SL graph,</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Feasible Tunnel" data-compartment="1">it defines limits for L for each S.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Nudge Decisions">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Nudge Decisions">
+							<rect x="432.5" y="521.0" height="80.0" width="265.0" data-name="Nudge Decisions"></rect>
+							<path d="M432.5 553.0 L697.5 553.0" fill="none" data-name="Nudge Decisions"></path>
+						</g>
+						<g transform="translate(432.5, 521)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Nudge Decisions" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Nudge Decisions" data-compartment="0">
+								<text x="124.5" y="14.1" stroke="none" text-anchor="middle" data-name="Nudge Decisions" data-compartment="0">Nudge Decisions</text>
+								
+							</g>
+						</g>
+						<g transform="translate(432.5, 553)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Nudge Decisions" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Nudge Decisions" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Nudge Decisions" data-compartment="1">This seems like &quot;no result&quot;, it is just</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Nudge Decisions" data-compartment="1">a by-product of the plan.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Cost Functional">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Cost Functional">
+							<rect x="168.8" y="657.5" height="64.0" width="212.0" data-name="Cost Functional"></rect>
+							<path d="M168.8 689.5 L380.8 689.5" fill="none" data-name="Cost Functional"></path>
+						</g>
+						<g transform="translate(168.75, 657.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Cost Functional" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Cost Functional" data-compartment="0">
+								<text x="98.0" y="14.1" stroke="none" text-anchor="middle" data-name="Cost Functional" data-compartment="0">Cost Functional</text>
+								
+							</g>
+						</g>
+						<g transform="translate(168.75, 689.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Cost Functional" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Cost Functional" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Cost Functional" data-compartment="1">Cs = Csmooth + Cguidance</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Smooth Functional">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Smooth Functional">
+							<rect x="115.5" y="545.0" height="32.0" width="160.0" data-name="Smooth Functional"></rect>
+						</g>
+						<g transform="translate(115.5, 545)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Smooth Functional" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Smooth Functional" data-compartment="0">
+								<text x="72.0" y="14.1" stroke="none" text-anchor="middle" data-name="Smooth Functional" data-compartment="0">Smooth Functional</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Linearized Constraint">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Linearized Constraint">
+							<rect x="814.5" y="641.0" height="97.0" width="371.0" data-name="Linearized Constraint"></rect>
+							<path d="M814.5 673.0 L1185.5 673.0" fill="none" data-name="Linearized Constraint"></path>
+						</g>
+						<g transform="translate(814.5, 641)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Linearized Constraint" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Linearized Constraint" data-compartment="0">
+								<text x="177.5" y="14.1" stroke="none" text-anchor="middle" data-name="Linearized Constraint" data-compartment="0">Linearized Constraint</text>
+								
+							</g>
+						</g>
+						<g transform="translate(814.5, 673)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Linearized Constraint" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Linearized Constraint" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Linearized Constraint" data-compartment="1">(Eqs. on page 8)</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Linearized Constraint" data-compartment="1">This adds a check that the car has a valid heading</text>
+								<text x="0.0" y="46.5" stroke="none" data-name="Linearized Constraint" data-compartment="1">at every point of the path.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Vehicle Dynamics">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Vehicle Dynamics">
+							<rect x="1050.5" y="545.0" height="32.0" width="151.0" data-name="Vehicle Dynamics"></rect>
+						</g>
+						<g transform="translate(1050.5, 545)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Vehicle Dynamics" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Vehicle Dynamics" data-compartment="0">
+								<text x="67.5" y="14.1" stroke="none" text-anchor="middle" data-name="Vehicle Dynamics" data-compartment="0">Vehicle Dynamics</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Spline QP Solver">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Spline QP Solver">
+							<rect x="639.5" y="778.0" height="80.0" width="190.0" data-name="Spline QP Solver"></rect>
+							<path d="M639.5 810.0 L829.5 810.0" fill="none" data-name="Spline QP Solver"></path>
+						</g>
+						<g transform="translate(639.5, 778)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Spline QP Solver" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Spline QP Solver" data-compartment="0">
+								<text x="87.0" y="14.1" stroke="none" text-anchor="middle" data-name="Spline QP Solver" data-compartment="0">Spline QP Solver</text>
+								
+							</g>
+						</g>
+						<g transform="translate(639.5, 810)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Spline QP Solver" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Spline QP Solver" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Spline QP Solver" data-compartment="1">s.t. boundary constraints</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Spline QP Solver" data-compartment="1">.... dynamic feasibility</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Smooth Path">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Smooth Path">
+							<rect x="677.5" y="898.0" height="32.0" width="114.0" data-name="Smooth Path"></rect>
+						</g>
+						<g transform="translate(677.5, 898)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Smooth Path" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Smooth Path" data-compartment="0">
+								<text x="49.0" y="14.1" stroke="none" text-anchor="middle" data-name="Smooth Path" data-compartment="0">Smooth Path</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Cost Functional.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Cost Functional.">
+							<rect x="147.3" y="978.0" height="64.0" width="267.0" data-name="Cost Functional."></rect>
+							<path d="M147.3 1010.0 L414.3 1010.0" fill="none" data-name="Cost Functional."></path>
+						</g>
+						<g transform="translate(147.25, 978)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Cost Functional." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Cost Functional." data-compartment="0">
+								<text x="125.5" y="14.1" stroke="none" text-anchor="middle" data-name="Cost Functional." data-compartment="0">Cost Functional.</text>
+								
+							</g>
+						</g>
+						<g transform="translate(147.25, 1010)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Cost Functional." data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Cost Functional." data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Cost Functional." data-compartment="1">Ctotal = Cvkeep + Csmooth + Cobs</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Traffic Regulations.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Traffic Regulations.">
+							<rect x="0.0" y="898.0" height="32.0" width="164.0" data-name="Traffic Regulations."></rect>
+						</g>
+						<g transform="translate(0, 898)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Traffic Regulations." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Traffic Regulations." data-compartment="0">
+								<text x="74.0" y="14.1" stroke="none" text-anchor="middle" data-name="Traffic Regulations." data-compartment="0">Traffic Regulations.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="SL Map&amp;Obs. Info..">
+						<g fill="#eee8d5" stroke="#33322E" data-name="SL Map&amp;Obs. Info..">
+							<rect x="204.0" y="898.0" height="32.0" width="162.0" data-name="SL Map&amp;Obs. Info.."></rect>
+						</g>
+						<g transform="translate(204, 898)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SL Map&amp;Obs. Info.." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SL Map&amp;Obs. Info.." data-compartment="0">
+								<text x="73.0" y="14.1" stroke="none" text-anchor="middle" data-name="SL Map&amp;Obs. Info.." data-compartment="0">SL Map&amp;Obs. Info..</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Vehicle Dynamic.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Vehicle Dynamic.">
+							<rect x="406.0" y="898.0" height="32.0" width="147.0" data-name="Vehicle Dynamic."></rect>
+						</g>
+						<g transform="translate(406, 898)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Vehicle Dynamic." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Vehicle Dynamic." data-compartment="0">
+								<text x="65.5" y="14.1" stroke="none" text-anchor="middle" data-name="Vehicle Dynamic." data-compartment="0">Vehicle Dynamic.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Dynamic Programming Search.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Dynamic Programming Search.">
+							<rect x="324.0" y="1090.0" height="32.0" width="253.0" data-name="Dynamic Programming Search."></rect>
+						</g>
+						<g transform="translate(324, 1090)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Dynamic Programming Search." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Dynamic Programming Search." data-compartment="0">
+								<text x="118.5" y="14.1" stroke="none" text-anchor="middle" data-name="Dynamic Programming Search." data-compartment="0">Dynamic Programming Search.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Discretized ST Grid">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Discretized ST Grid">
+							<rect x="568.5" y="970.0" height="80.0" width="332.0" data-name="Discretized ST Grid"></rect>
+							<path d="M568.5 1002.0 L900.5 1002.0" fill="none" data-name="Discretized ST Grid"></path>
+						</g>
+						<g transform="translate(568.5, 970)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Discretized ST Grid" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Discretized ST Grid" data-compartment="0">
+								<text x="158.0" y="14.1" stroke="none" text-anchor="middle" data-name="Discretized ST Grid" data-compartment="0">Discretized ST Grid</text>
+								
+							</g>
+						</g>
+						<g transform="translate(568.5, 1002)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Discretized ST Grid" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Discretized ST Grid" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Discretized ST Grid" data-compartment="1">Using piecewise linear speed profile function</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Discretized ST Grid" data-compartment="1">to evaluate the ST grid</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="DP Speed.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="DP Speed.">
+							<rect x="257.5" y="1162.0" height="32.0" width="95.0" data-name="DP Speed."></rect>
+						</g>
+						<g transform="translate(257.5, 1162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DP Speed." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DP Speed." data-compartment="0">
+								<text x="39.5" y="14.1" stroke="none" text-anchor="middle" data-name="DP Speed." data-compartment="0">DP Speed.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Feasible Tunnel.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Feasible Tunnel.">
+							<rect x="581.5" y="1162.0" height="32.0" width="140.0" data-name="Feasible Tunnel."></rect>
+						</g>
+						<g transform="translate(581.5, 1162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Feasible Tunnel." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Feasible Tunnel." data-compartment="0">
+								<text x="62.0" y="14.1" stroke="none" text-anchor="middle" data-name="Feasible Tunnel." data-compartment="0">Feasible Tunnel.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Speed Decisions.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Speed Decisions.">
+							<rect x="392.5" y="1162.0" height="32.0" width="149.0" data-name="Speed Decisions."></rect>
+						</g>
+						<g transform="translate(392.5, 1162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Speed Decisions." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Speed Decisions." data-compartment="0">
+								<text x="66.5" y="14.1" stroke="none" text-anchor="middle" data-name="Speed Decisions." data-compartment="0">Speed Decisions.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Cost Functional:">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Cost Functional:">
+							<rect x="103.0" y="1234.0" height="64.0" width="234.0" data-name="Cost Functional:"></rect>
+							<path d="M103.0 1266.0 L337.0 1266.0" fill="none" data-name="Cost Functional:"></path>
+						</g>
+						<g transform="translate(103, 1234)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Cost Functional:" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Cost Functional:" data-compartment="0">
+								<text x="109.0" y="14.1" stroke="none" text-anchor="middle" data-name="Cost Functional:" data-compartment="0">Cost Functional:</text>
+								
+							</g>
+						</g>
+						<g transform="translate(103, 1266)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Cost Functional:" data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Cost Functional:" data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Cost Functional:" data-compartment="1">Ctotal = Cguidance + Csmooth</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Smooth Functional.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Smooth Functional.">
+							<rect x="52.5" y="1162.0" height="32.0" width="165.0" data-name="Smooth Functional."></rect>
+						</g>
+						<g transform="translate(52.5, 1162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Smooth Functional." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Smooth Functional." data-compartment="0">
+								<text x="74.5" y="14.1" stroke="none" text-anchor="middle" data-name="Smooth Functional." data-compartment="0">Smooth Functional.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Linearized Constraint.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Linearized Constraint.">
+							<rect x="747.5" y="1250.0" height="32.0" width="184.0" data-name="Linearized Constraint."></rect>
+						</g>
+						<g transform="translate(747.5, 1250)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Linearized Constraint." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Linearized Constraint." data-compartment="0">
+								<text x="84.0" y="14.1" stroke="none" text-anchor="middle" data-name="Linearized Constraint." data-compartment="0">Linearized Constraint.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Vehicle Dynamics.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Vehicle Dynamics.">
+							<rect x="761.5" y="1162.0" height="32.0" width="156.0" data-name="Vehicle Dynamics."></rect>
+						</g>
+						<g transform="translate(761.5, 1162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Vehicle Dynamics." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Vehicle Dynamics." data-compartment="0">
+								<text x="70.0" y="14.1" stroke="none" text-anchor="middle" data-name="Vehicle Dynamics." data-compartment="0">Vehicle Dynamics.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Traffic Regulations:">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Traffic Regulations:">
+							<rect x="957.5" y="1162.0" height="32.0" width="165.0" data-name="Traffic Regulations:"></rect>
+						</g>
+						<g transform="translate(957.5, 1162)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Traffic Regulations:" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Traffic Regulations:" data-compartment="0">
+								<text x="74.5" y="14.1" stroke="none" text-anchor="middle" data-name="Traffic Regulations:" data-compartment="0">Traffic Regulations:</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Spline QP Solver.">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Spline QP Solver.">
+							<rect x="392.3" y="1338.0" height="113.0" width="190.0" data-name="Spline QP Solver."></rect>
+							<path d="M392.3 1370.0 L582.3 1370.0" fill="none" data-name="Spline QP Solver."></path>
+						</g>
+						<g transform="translate(392.25, 1338)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Spline QP Solver." data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Spline QP Solver." data-compartment="0">
+								<text x="87.0" y="14.1" stroke="none" text-anchor="middle" data-name="Spline QP Solver." data-compartment="0">Spline QP Solver.</text>
+								
+							</g>
+						</g>
+						<g transform="translate(392.25, 1370)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Spline QP Solver." data-compartment="1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Spline QP Solver." data-compartment="1">
+								<text x="0.0" y="14.1" stroke="none" data-name="Spline QP Solver." data-compartment="1">s.t. boundary constraints</text>
+								<text x="0.0" y="30.3" stroke="none" data-name="Spline QP Solver." data-compartment="1">.... dynamic constraints</text>
+								<text x="0.0" y="46.5" stroke="none" data-name="Spline QP Solver." data-compartment="1">.... monotony</text>
+								<text x="0.0" y="62.7" stroke="none" data-name="Spline QP Solver." data-compartment="1">etc.</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Smooth Speed">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Smooth Speed">
+							<rect x="423.3" y="1491.0" height="32.0" width="128.0" data-name="Smooth Speed"></rect>
+						</g>
+						<g transform="translate(423.25, 1491)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Smooth Speed" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Smooth Speed" data-compartment="0">
+								<text x="56.0" y="14.1" stroke="none" text-anchor="middle" data-name="Smooth Speed" data-compartment="0">Smooth Speed</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Candidate Trajectory">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Candidate Trajectory">
+							<rect x="400.3" y="1563.0" height="32.0" width="174.0" data-name="Candidate Trajectory"></rect>
+						</g>
+						<g transform="translate(400.25, 1563)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Candidate Trajectory" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Candidate Trajectory" data-compartment="0">
+								<text x="79.0" y="14.1" stroke="none" text-anchor="middle" data-name="Candidate Trajectory" data-compartment="0">Candidate Trajectory</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Vehicle Control">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Vehicle Control">
+							<rect x="420.8" y="1635.0" height="32.0" width="133.0" data-name="Vehicle Control"></rect>
+						</g>
+						<g transform="translate(420.75, 1635)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Vehicle Control" data-compartment="0">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Vehicle Control" data-compartment="0">
+								<text x="58.5" y="14.1" stroke="none" text-anchor="middle" data-name="Vehicle Control" data-compartment="0">Vehicle Control</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
