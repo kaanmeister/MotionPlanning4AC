@@ -1,4 +1,3 @@
-implemented and pushed collide checker, dp path planner, 5th order quintic polynomial calculations and kernel calculations for H matrix, there are still things to improve and finetune.
 
 collide_checker.py will only visualize the paths which do not collide (shown in green) and do collide (which shown in red).
 
@@ -9,3 +8,6 @@ quintic_polynomial.py this script includes methods to calculate polynomial's val
 calc_kernels4matrixH.py this script translates the smoothness objectives from the paper into the matrix format rquired by QP solver. it provides functions to compute 6x6 kernel matrices for each component of the path's smoothness cost such as jerk,acceleration,and velocity
 
 All of them will be used for the next following days to actually building the QP optimizer to create a new, smooth spline path.
+
+
+This is only a draft readme file for now to keep the track of workflow. It will be updated in a formal language.
